@@ -1,0 +1,5 @@
+.idea
+.project
+debug.js
+node_modules/
+package-lock.json
