@@ -1,6 +1,18 @@
 {
+  "esversion": 6,
+  "strict": true,
+
   "expr": true,
   "node": true,
   "browser": true,
-  "globalstrict": true
+
+  "newcap":  true,
+  "quotmark": true,
+  "lastsemic": true,
+  
+  "undef": true,
+  "unused": true,
+  "funcscope": false,
+  "loopfunc": false,
+  "eqnull": true
 }
