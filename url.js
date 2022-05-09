@@ -12,28 +12,28 @@
 (function (ns) {
     'use strict';
 
-    var RX_PROTOCOL = /^[a-z]+:/;
-    var RX_PORT = /[-a-z0-9]+(\.[-a-z0-9])*:\d+/i;
-    var RX_CREDS = /\/\/(.*?)(?::(.*?))?@/;
-    var RX_WIN = /^win/i;
-    var RX_PROTOCOL_REPL = /:$/;
-    var RX_QUERY_REPL = /^\?/;
-    var RX_HASH_REPL = /^#/;
-    var RX_PATH = /(.*\/)/;
-    var RX_PATH_FIX = /^\/{2,}/;
+    const RX_PROTOCOL = /^[a-z]+:/;
+    const RX_PORT = /[-a-z0-9]+(\.[-a-z0-9])*:\d+/i;
+    const RX_CREDS = /\/\/(.*?)(?::(.*?))?@/;
+    const RX_WIN = /^win/i;
+    const RX_PROTOCOL_REPL = /:$/;
+    const RX_QUERY_REPL = /^\?/;
+    const RX_HASH_REPL = /^#/;
+    const RX_PATH = /(.*\/)/;
+    const RX_PATH_FIX = /^\/{2,}/;
     // https://news.ycombinator.com/item?id=3939454
-    var RX_PATH_IE_FIX = /(^\/?)/;
-    var RX_SINGLE_QUOTE = /'/g;
-    var RX_DECODE_1 = /%([ef][0-9a-f])%([89ab][0-9a-f])%([89ab][0-9a-f])/gi;
-    var RX_DECODE_2 = /%([cd][0-9a-f])%([89ab][0-9a-f])/gi;
-    var RX_DECODE_3 = /%([0-7][0-9a-f])/gi;
-    var RX_PLUS = /\+/g;
-    var RX_PATH_SEMI = /^\w:$/;
-    var RX_URL_TEST = /[^/#?]/;
+    const RX_PATH_IE_FIX = /(^\/?)/;
+    const RX_SINGLE_QUOTE = /'/g;
+    const RX_DECODE_1 = /%([ef][0-9a-f])%([89ab][0-9a-f])%([89ab][0-9a-f])/gi;
+    const RX_DECODE_2 = /%([cd][0-9a-f])%([89ab][0-9a-f])/gi;
+    const RX_DECODE_3 = /%([0-7][0-9a-f])/gi;
+    const RX_PLUS = /\+/g;
+    const RX_PATH_SEMI = /^\w:$/;
+    const RX_URL_TEST = /[^/#?]/;
 
     // configure given url options
     function urlConfig (url) {
-        var config = {
+        const config = {
             path: true,
             query: true,
             hash: true
@@ -60,17 +60,17 @@
         return config;
     }
 
-    var isNode = typeof window === 'undefined' &&
+    const isNode = typeof window === 'undefined' &&
         typeof global !== 'undefined' &&
         typeof require === 'function';
-    var isIe = !isNode && ns.navigator && ns.navigator.userAgent &&
+    const isIe = !isNode && ns.navigator && ns.navigator.userAgent &&
         ~ns.navigator.userAgent.indexOf('MSIE');
 
     // Trick to bypass Webpack's require at compile time
-    var nodeRequire = isNode ? ns['require'] : null;
+    const nodeRequire = isNode ? ns.require : null;
 
     // mapping between what we want and <a> element properties
-    var map = {
+    const map = {
         protocol: 'protocol',
         host: 'hostname',
         port: 'port',
@@ -85,8 +85,7 @@
      * We need them to fix IE behavior,
      * @see https://github.com/Mikhus/jsurl/issues/2
      */
-    // jscs: enable
-    var defaultPorts = {
+    const defaultPorts = {
         ftp: 21,
         gopher: 70,
         http: 80,
@@ -95,7 +94,7 @@
         wss: 443
     };
 
-    var _currNodeUrl;
+    let _currNodeUrl;
     function getCurrUrl() {
         if (isNode) {
             if (!_currNodeUrl) {
@@ -106,14 +105,14 @@
             }
             return _currNodeUrl;
         } else if (document.location.href === 'about:srcdoc') {
-            return self.parent.document.location.href;
+            return window.self.parent.document.location.href;
         } else {
             return document.location.href;
         }
     }
 
     function parse (self, url, absolutize) {
-        var link, i, auth;
+        let link, i, auth;
 
         if (!url) {
             url = getCurrUrl();
@@ -128,7 +127,7 @@
             link.href = url;
         }
 
-        var config = urlConfig(url);
+        const config = urlConfig(url);
 
         auth = url.match(RX_CREDS) || [];
 
@@ -146,12 +145,10 @@
         self.hash = decode(self.hash.replace(RX_HASH_REPL, ''));
         self.user = decode(auth[1] || '');
         self.pass = decode(auth[2] || '');
-        /* jshint ignore:start */
         self.port = (
             // loosely compare because port can be a string
-            defaultPorts[self.protocol] == self.port || self.port == 0
+            defaultPorts[self.protocol] == self.port || self.port == 0  // jshint ignore:line
         ) ? '' : self.port; // IE fix, Android browser fix
-        /* jshint ignore:end */
 
         if (!config.protocol && RX_URL_TEST.test(url.charAt(0))) {
             self.path = url.split('?')[0].split('#')[0];
@@ -159,11 +156,11 @@
 
         if (!config.protocol && absolutize) {
             // is IE and path is relative
-            var base = new Url(getCurrUrl().match(RX_PATH)[0]);
-            var basePath = base.path.split('/');
-            var selfPath = self.path.split('/');
-            var props = ['protocol', 'user', 'pass', 'host', 'port'];
-            var s = props.length;
+            const base = new Url(getCurrUrl().match(RX_PATH)[0]);
+            const basePath = base.path.split('/');
+            const selfPath = self.path.split('/');
+            const props = ['protocol', 'user', 'pass', 'host', 'port'];
+            const s = props.length;
 
             basePath.pop();
 
@@ -197,15 +194,15 @@
     function decode (s) {
         s = s.replace(RX_PLUS, ' ');
         s = s.replace(RX_DECODE_1, function (code, hex1, hex2, hex3) {
-            var n1 = parseInt(hex1, 16) - 0xE0;
-            var n2 = parseInt(hex2, 16) - 0x80;
+            const n1 = parseInt(hex1, 16) - 0xE0;
+            const n2 = parseInt(hex2, 16) - 0x80;
 
             if (n1 === 0 && n2 < 32) {
                 return code;
             }
 
-            var n3 = parseInt(hex3, 16) - 0x80;
-            var n = (n1 << 12) + (n2 << 6) + n3;
+            const n3 = parseInt(hex3, 16) - 0x80;
+            const n = (n1 << 12) + (n2 << 6) + n3;
 
             if (n > 0xFFFF) {
                 return code;
@@ -214,13 +211,13 @@
             return String.fromCharCode(n);
         });
         s = s.replace(RX_DECODE_2, function (code, hex1, hex2) {
-            var n1 = parseInt(hex1, 16) - 0xC0;
+            const n1 = parseInt(hex1, 16) - 0xC0;
 
             if (n1 < 2) {
                 return code;
             }
 
-            var n2 = parseInt(hex2, 16) - 0x80;
+            const n2 = parseInt(hex2, 16) - 0x80;
 
             return String.fromCharCode((n1 << 6) + n2);
         });
@@ -237,17 +234,17 @@
      * @constructor
      */
     function QueryString (qs) {
-        var parts = qs.split('&');
+        const parts = qs.split('&');
 
-        for (var i = 0, s = parts.length; i < s; i++) {
-            var keyVal = parts[i].split('=');
-            var key = decodeURIComponent(keyVal[0].replace(RX_PLUS, ' '));
+        for (let i = 0, s = parts.length; i < s; i++) {
+            const keyVal = parts[i].split('=');
+            const key = decodeURIComponent(keyVal[0].replace(RX_PLUS, ' '));
 
             if (!key) {
                 continue;
             }
 
-            var value = keyVal[1] !== undefined ? decode(keyVal[1]) : null;
+            const value = keyVal[1] !== undefined ? decode(keyVal[1]) : null;
 
             if (this[key] === undefined) {
                 this[key] = value;
@@ -267,19 +264,19 @@
      * @returns {string}
      */
     QueryString.prototype.toString = function () {
-        var s = '';
-        var e = encode;
-        var i, ii;
+        let s = '';
+        const e = encode;
+        let i, ii;
 
         for (i in this) {
-            var w = this[i];
+            const w = this[i];
 
             if (w instanceof Function || w === undefined) {
                 continue;
             }
 
             if (w instanceof Array) {
-                var len = w.length;
+                const len = w.length;
 
                 if (!len) {
                     // Parameter is an empty array, so treat as
@@ -289,13 +286,12 @@
                 }
 
                 for (ii = 0; ii < len; ii++) {
-                    var v = w[ii];
+                    const v = w[ii];
                     if (v === undefined) {
                         continue;
                     }
                     s += s ? '&' : '';
-                    s += e(i) + (v === null
-                        ? ''
+                    s += e(i) + (v === null ? ''
                         : '=' + e(v));
                 }
                 continue;
@@ -326,7 +322,7 @@
      * @returns {Url}
      */
     Url.prototype.clearQuery = function () {
-        for (var key in this.query) {
+        for (const key in this.query) {
             if (!(this.query[key] instanceof Function)) {
                 delete this.query[key];
             }
@@ -341,9 +337,9 @@
      * @returns {number}
      */
     Url.prototype.queryLength = function () {
-        var count = 0;
+        let count = 0;
 
-        for (var key in this.query) {
+        for (const key in this.query) {
             if (!(this.query[key] instanceof Function)) {
                 count++;
             }
@@ -368,9 +364,9 @@
      * @returns {Array} - an array representation of the Url.path property
      */
     Url.prototype.paths = function (paths) {
-        var prefix = '';
-        var i = 0;
-        var s;
+        let prefix = '';
+        let i = 0;
+        let s;
 
         if (paths && paths.length && paths + '' !== paths) {
             if (this.isAbsolute()) {
@@ -378,8 +374,7 @@
             }
 
             for (s = paths.length; i < s; i++) {
-                paths[i] = !i && RX_PATH_SEMI.test(paths[i])
-                    ? paths[i]
+                paths[i] = !i && RX_PATH_SEMI.test(paths[i]) ? paths[i]
                     : encode(paths[i]);
             }
 
