@@ -314,6 +314,15 @@
      */
     function Url (url, noTransform) {
         parse(this, url, !noTransform);
+
+        // create fields
+        this.query = undefined;
+        this.protocol = undefined;
+        this.user = undefined;
+        this.host = undefined;
+        this.port = undefined;
+        this.hash = undefined;
+        this.pass = undefined;
     }
 
     /**
