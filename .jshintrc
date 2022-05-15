@@ -5,6 +5,7 @@
   "expr": true,
   "node": true,
   "browser": true,
+  "mocha": true,
 
   "newcap":  true,
   "quotmark": true,

@@ -6,48 +6,48 @@ const p = require('path');
 const Url = require('../url.min.js');
 
 function sanitizeURL (url) {
-    var u = new Url(url, true);
+    const u = new Url(url, true);
 
-    if (u.query['reload']) {
-        delete u.query['reload']
+    if (u.query.reload) {
+        delete u.query.reload;
     }
 
-    if (u.query['forceReload']) {
-        delete u.query['forceReload']
+    if (u.query.forceReload) {
+        delete u.query.forceReload;
     }
 
-    if (u.query['device']) {
-        delete u.query['device']
+    if (u.query.device) {
+        delete u.query.device;
     }
 
-    if (u.query['testwebid']) {
-        delete u.query['testwebid']
+    if (u.query.testwebid) {
+        delete u.query.testwebid;
     }
 
-    if (u.query['testWebId']) {
-        delete u.query['testWebId']
+    if (u.query.testWebId) {
+        delete u.query.testWebId;
     }
 
-    if (u.query['testWebID']) {
-        delete u.query['testWebID']
+    if (u.query.testWebID) {
+        delete u.query.testWebID;
     }
 
-    if (u.query['timetravel']) {
-        delete u.query['timetravel']
+    if (u.query.timetravel) {
+        delete u.query.timetravel;
     }
 
     return u.toString();
 }
 
 describe('Url()', function () {
-    it('should construct an oobject', function () {
+    it('should construct an object', function () {
         const u = new Url();
         assert.equal(u instanceof Url, true);
     });
     it('should match current dir when construct with no argument', function () {
         const u = new Url();
-        const dir = u.path.replace(/\//g, p.sep);
-        process.platform.match(/^win/) && (dir = dir.substr(1));
+        let dir = u.path.replace(/\//g, p.sep);
+        process.platform.match(/^win/) && (dir = dir.substring(1));
         assert.equal(dir, fs.realpathSync('.'));
     });
     it('should keep URL without transformations if requested', function () {
@@ -75,8 +75,8 @@ describe('Url.clearQuery()', function () {
 
 describe('Url.encode(), Url.decode()', function () {
     it('should correctly encode and decode query string params', function () {
-        var url1 = new Url('http://localhost/?a=%3F').toString();
-        var url2 = new Url('http://localhost/?a=%3f').toString();
+        const url1 = new Url('http://localhost/?a=%3F').toString();
+        const url2 = new Url('http://localhost/?a=%3f').toString();
         assert.equal(url1.toLowerCase(), url2.toLowerCase());
     });
 });
@@ -99,20 +99,20 @@ describe('Url.queryLength()', function () {
 
 describe('Url.query.toString()', function () {
     it('should maintain name for null values, and drop them for undefined values', function () {
-        const originalStr = 'http://localhost/path?alice=123&bob=&carol'
+        const originalStr = 'http://localhost/path?alice=123&bob=&carol';
         const u = new Url(originalStr);
-        assert.equal(u.query['alice'], '123');
-        assert.equal(u.query['bob'], '');
-        assert.equal(u.query['carol'], null);
-        assert.equal(u.query['dave'], undefined);
+        assert.equal(u.query.alice, '123');
+        assert.equal(u.query.bob, '');
+        assert.equal(u.query.carol, null);
+        assert.equal(u.query.dave, undefined);
         assert.equal(u.toString(), originalStr);
 
-        u.query['eve'] = null;
+        u.query.eve = null;
         assert.equal(u.toString(), originalStr + '&eve');
-        u.query['eve'] = undefined;
+        u.query.eve = undefined;
         assert.equal(u.toString(), originalStr);
 
-        u.query['frank'] = 'foo';
+        u.query.frank = 'foo';
         assert.equal(u.toString(), originalStr + '&frank=foo');
         delete u.query.frank;
         assert.equal(u.toString(), originalStr);
