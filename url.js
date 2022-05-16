@@ -441,7 +441,7 @@
                 ) + '@')) +
             (this.host) +
             (this.port && (':' + this.port)) +
-            (this.path && this.path) +
+            (this.path) +
             (this.query.toString() && ('?' + this.query)) +
             (this.hash && ('#' + encode(this.hash)))
         );
