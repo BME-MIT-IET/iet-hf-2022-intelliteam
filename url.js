@@ -222,7 +222,7 @@
             return String.fromCharCode((n1 << 6) + n2);
         });
 
-        return s.replace(RX_DECODE_3, function (code, hex) {
+        return s.replace(RX_DECODE_3, function (hex) {
             return String.fromCharCode(parseInt(hex, 16));
         });
     }
