@@ -160,12 +160,11 @@
             const basePath = base.path.split('/');
             const selfPath = self.path.split('/');
             const props = ['protocol', 'user', 'pass', 'host', 'port'];
-            const s = props.length;
 
             basePath.pop();
 
-            for (i = 0; i < s; i++) {
-                self[props[i]] = base[props[i]];
+            for (let prop of props) {
+                self[prop] = base[prop];
             }
 
             while (selfPath[0] === '..') { // skip all "../
