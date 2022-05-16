@@ -367,7 +367,7 @@
         let i = 0;
         let s;
 
-        if (paths && paths.length && paths + '' !== paths) {
+        if (paths && paths.length) {
             if (this.isAbsolute()) {
                 prefix = '/';
             }
