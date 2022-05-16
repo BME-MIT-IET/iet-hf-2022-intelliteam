@@ -29,4 +29,9 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm run minify
-    - run: npm test
+    - run: npm run coverage
+    - name: Get code coverage
+      uses: romeovs/lcov-reporter-action@v0.2.21
+      with:
+        title: Code Coverage
+        github-token: ${{ secrets.COVERAGE_TOKEN }}

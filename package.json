@@ -21,6 +21,7 @@
   "main": "url.min.js",
   "scripts": {
     "test": "mocha ./test/url.js",
+    "coverage": "nyc npm test",
     "minify": "terser url.js --compress -o url.min.js"
   },
   "maintainers": [
@@ -42,6 +43,7 @@
     "jscs": "^3.0.7",
     "jshint": "^2.11.0",
     "mocha": "^7.1.1",
+    "nyc": "^15.1.0",
     "terser": "^5.13.1"
   }
 }
