@@ -3,7 +3,7 @@
 const assert = require('assert');
 const fs = require('fs');
 const p = require('path');
-const Url = require('../url.min.js');
+const Url = require('../url.js');
 
 function sanitizeURL (url) {
     const u = new Url(url, true);
