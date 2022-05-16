@@ -32,7 +32,7 @@
     const RX_URL_TEST = /[^/#?]/;
 
     // configure given url options
-    function urlConfig (url) {
+    function urlConfig(url) {
         const config = {
             path: true,
             query: true,
@@ -111,7 +111,7 @@
         }
     }
 
-    function parse (self, url, absolutize) {
+    function parse(self, url, absolutize) {
         let link, i, auth;
 
         if (!url) {
@@ -176,7 +176,7 @@
             self.path =
                 (url.charAt(0) !== '/' ? basePath.join('/') : '') +
                 '/' + selfPath.join('/')
-            ;
+                ;
         }
 
         self.path = self.path.replace(RX_PATH_FIX, '/');
@@ -187,11 +187,11 @@
         self.query = new QueryString(self.query);
     }
 
-    function encode (s) {
+    function encode(s) {
         return encodeURIComponent(s).replace(RX_SINGLE_QUOTE, '%27');
     }
 
-    function decode (s) {
+    function decode(s) {
         s = s.replace(RX_PLUS, ' ');
         s = s.replace(RX_DECODE_1, function (code, hex1, hex2, hex3) {
             const n1 = parseInt(hex1, 16) - 0xE0;
@@ -233,7 +233,7 @@
      * @param {string} qs - string representation of QueryString
      * @constructor
      */
-    function QueryString (qs) {
+    function QueryString(qs) {
         const parts = qs.split('&');
 
         for (let i = 0, s = parts.length; i < s; i++) {
@@ -312,7 +312,7 @@
      * @param {boolean} [noTransform] - do not transform to absolute URL
      * @constructor
      */
-    function Url (url, noTransform) {
+    function Url(url, noTransform) {
         parse(this, url, !noTransform);
 
         // create fields
@@ -438,8 +438,8 @@
             (this.protocol && (this.protocol + '://')) +
             (this.user && (
                 encode(this.user) + (this.pass && (':' + encode(this.pass))
-            ) + '@')) +
-            (this.host && this.host) +
+                ) + '@')) +
+            (this.host) +
             (this.port && (':' + this.port)) +
             (this.path && this.path) +
             (this.query.toString() && ('?' + this.query)) +
