@@ -1,7 +1,8 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
     <script src="../url.min.js"></script>
+    <title>domurl test page</title>
 </head>
 <body>
 <script id="tests">
@@ -209,7 +210,7 @@
     // iframe
     document.write("<h4>All tests inside a srcdoc iframe</h4>");
 </script>
-<iframe srcdoc="
+<iframe title="test iframe" srcdoc="
 <script src='../url.min.js'></script>
 <script>
 	var script = document.createElement('script');
