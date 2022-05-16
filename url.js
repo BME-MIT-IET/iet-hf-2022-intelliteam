@@ -221,7 +221,7 @@
             return String.fromCharCode((n1 << 6) + n2);
         });
 
-        return s.replace(RX_DECODE_3, (code, hex) =>
+        return s.replace(RX_DECODE_3, (_code, hex) =>
             String.fromCharCode(parseInt(hex, 16))
         );
     }
