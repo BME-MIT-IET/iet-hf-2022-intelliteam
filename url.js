@@ -221,7 +221,7 @@
             return String.fromCharCode((n1 << 6) + n2);
         });
 
-        return s.replace(RX_DECODE_3, (code, hex) =>
+        return s.replace(RX_DECODE_3, (_code, hex) =>
             String.fromCharCode(parseInt(hex, 16))
         );
     }
@@ -367,7 +367,7 @@
         let i = 0;
         let s;
 
-        if (paths && paths.length && paths + '' !== paths) {
+        if (paths && paths.length) {
             if (this.isAbsolute()) {
                 prefix = '/';
             }
