@@ -11,7 +11,7 @@ updateDemoDivInnerHtml();
 
 function setQuery() {
     let queryInput = document.getElementById('queryInput');
-    urlDemo.query.a = query.value;
+    urlDemo.query.a = queryInput.value;
 
     updateDemoDivInnerHtml();
 }
