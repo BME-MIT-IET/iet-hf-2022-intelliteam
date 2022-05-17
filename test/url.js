@@ -176,7 +176,7 @@ describe('Path url encoding', function () {
     });
 });
 
-describe('goma test', function () {
+describe('Empty query', function () {
     it('should give empty query for empty array', function () {
         const url = new Url("http://localhost/goma?a=10");
 
