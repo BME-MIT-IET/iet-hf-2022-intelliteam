@@ -406,9 +406,7 @@ Url.prototype.decode = decode;
  *
  * @returns {boolean}
  */
-Url.prototype.isAbsolute = function () {
-    return this.protocol || this.path.charAt(0) === '/';
-};
+Url.prototype.isAbsolute = () => !!this.protocol || this.path.charAt(0) === '/';
 
 /**
  * Returns string representation of current Url object
