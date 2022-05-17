@@ -96,8 +96,8 @@ const defaultPorts = {
     wss: 443
 };
 
-let _currNodeUrl;
 function getCurrUrl() {
+    let _currNodeUrl;
     if (isNode) {
         if (!_currNodeUrl) {
             _currNodeUrl = ('file://' +
@@ -114,7 +114,7 @@ function getCurrUrl() {
 }
 
 function parse(self, url, absolutize) {
-    let link, i, auth;
+    let link, auth;
 
     if (!url) {
         url = getCurrUrl();
@@ -123,7 +123,6 @@ function parse(self, url, absolutize) {
     if (isNode) {
         link = nodeRequire('url').parse(url);
     }
-
     else {
         link = document.createElement('a');
         link.href = url;
@@ -133,7 +132,7 @@ function parse(self, url, absolutize) {
 
     auth = url.match(RX_CREDS) || [];
 
-    for (i in map) {
+    for (let i in map) {
         if (config[i]) {
             self[i] = link[map[i]] || '';
         } else {
@@ -176,14 +175,11 @@ function parse(self, url, absolutize) {
 
         self.path =
             (url.charAt(0) !== '/' ? basePath.join('/') : '') +
-            '/' + selfPath.join('/')
-            ;
+            '/' + selfPath.join('/');
     }
 
     self.path = self.path.replace(RX_PATH_FIX, '/');
     isIe && (self.path = self.path.replace(RX_PATH_IE_FIX, '/'));
-
-    self.paths(self.paths());
 
     self.query = new QueryString(self.query);
 }
@@ -328,7 +324,6 @@ Url.prototype.clearQuery = function () {
             delete this.query[key];
         }
     }
-
     return this;
 };
 
@@ -339,13 +334,11 @@ Url.prototype.clearQuery = function () {
  */
 Url.prototype.queryLength = function () {
     let count = 0;
-
     for (const key in this.query) {
         if (!(this.query[key] instanceof Function)) {
             count++;
         }
     }
-
     return count;
 };
 
@@ -365,16 +358,13 @@ Url.prototype.isEmptyQuery = function () {
  * @returns {Array} - an array representation of the Url.path property
  */
 Url.prototype.paths = function (paths) {
-    let prefix = '';
-    let i = 0;
-    let s;
-
     if (paths && paths.length) {
+        let prefix = '';
         if (this.isAbsolute()) {
             prefix = '/';
         }
 
-        for (s = paths.length; i < s; i++) {
+        for (let i = 0, s = paths.length; i < s; i++) {
             paths[i] = !i && RX_PATH_SEMI.test(paths[i]) ? paths[i]
                 : encode(paths[i]);
         }
@@ -385,7 +375,7 @@ Url.prototype.paths = function (paths) {
     paths = (this.path.charAt(0) === '/' ?
         this.path.slice(1) : this.path).split('/');
 
-    for (i = 0, s = paths.length; i < s; i++) {
+    for (let i = 0, s = paths.length; i < s; i++) {
         paths[i] = decode(paths[i]);
     }
 
