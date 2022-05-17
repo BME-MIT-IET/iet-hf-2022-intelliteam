@@ -353,22 +353,17 @@ Url.prototype.isEmptyQuery = function () {
 
 /**
  *
- * @param {Array} [paths] - an array pf path parts (if given will modify
- *                          Url.path property
+ * @param {Array} [paths] - an array of path parts (if given will modify
+ *                          Url.path property)
  * @returns {Array} - an array representation of the Url.path property
  */
 Url.prototype.paths = function (paths) {
     if (paths && paths.length) {
-        let prefix = '';
-        if (this.isAbsolute()) {
-            prefix = '/';
-        }
-
         for (let i = 0, s = paths.length; i < s; i++) {
             paths[i] = !i && RX_PATH_SEMI.test(paths[i]) ? paths[i]
                 : encode(paths[i]);
         }
-
+        let prefix = this.isAbsolute() ? '/' : '';
         this.path = prefix + paths.join('/');
     }
 
