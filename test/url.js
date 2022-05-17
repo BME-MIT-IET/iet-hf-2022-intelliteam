@@ -5,7 +5,7 @@ const fs = require('fs');
 const p = require('path');
 const Url = require('../url.js');
 
-function sanitizeURL (url) {
+function sanitizeURL(url) {
     const u = new Url(url, true);
 
     if (u.query.reload) {
@@ -52,8 +52,8 @@ describe('Url()', function () {
     });
     it('should keep URL without transformations if requested', function () {
         assert.equal(
-          sanitizeURL('/SearchResults?search=new&make=Buick&year=2016&forceReload=true'),
-          '/SearchResults?search=new&make=Buick&year=2016'
+            sanitizeURL('/SearchResults?search=new&make=Buick&year=2016&forceReload=true'),
+            '/SearchResults?search=new&make=Buick&year=2016'
         );
     });
     it('should test absolutize url', function () {
@@ -163,7 +163,7 @@ describe('Url props interface', function () {
 describe('Path url encoding', function () {
     it('should correctly encode whitespace as %20', function () {
         const u = new Url('http://localhost/path with space');
-        assert.equal(u.toString(),'http://localhost/path%20with%20space');
+        assert.equal(u.toString(), 'http://localhost/path%20with%20space');
     });
     // TODO: Fix https://github.com/Mikhus/domurl/issues/49
     xit('should correctly encode Plus Sign (+) to %2b in path.', function () {
@@ -175,3 +175,18 @@ describe('Path url encoding', function () {
         assert.equal(u.toString(), 'http://localhost/path%2bwith%2bplus');
     });
 });
+
+describe('goma test', function () {
+    it('should give empty query for empty array', function () {
+        const url = new Url("http://localhost/goma?a=10");
+
+        url.query.a = []
+
+        assert.equal(url.toString(), "http://localhost/goma?a=")
+    });
+    it('should give true when query is empty', function () {
+        const url = new Url("http://localhost/goma");
+
+        assert.equal(url.isEmptyQuery(), true);
+    })
+})
