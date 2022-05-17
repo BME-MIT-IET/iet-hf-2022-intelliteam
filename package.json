@@ -20,7 +20,7 @@
   },
   "main": "url.min.js",
   "scripts": {
-    "test": "mocha ./test/url.js",
+    "test": "nyc mocha --timeout=3000",
     "coverage": "nyc npm test",
     "minify": "terser url.js --compress -o url.min.js"
   },
