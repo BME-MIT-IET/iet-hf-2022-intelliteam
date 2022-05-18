@@ -34,9 +34,21 @@ Given The URL is set "http://localhost/path#szilya"
 Then There is no param
 
 
+Scenario: Gives back the char array representation of the url path
+Given The URL is now "http://localhost.com/80/benzin=draga"
+Then The the 0. char is "/"
+Then The the 1. char is "8"
+Then The the 2. char is "0"
+Then The the 3. char is "/"
+
+
 Scenario: Gives back the array representation of the url path
-Given The URL is now "http://localhost.com/80/?benzin=draga"
-Then The the 0. element is "/"
-Then The the 1. element is "8"
-Then The the 2. element is "0"
-Then The the 3. element is "/"
+Given The URL is again "http://localhost.com/80/benzin=draga"
+Then The the 0. element is "80"
+Then The the 1. element is "benzin=draga"
+
+
+Scenario: Returns the protocol
+Given The URL is once again "http://localhost.com/80/benzin=draga"
+Then The protocol is "http"
+ 

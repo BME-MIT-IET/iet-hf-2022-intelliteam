@@ -34,6 +34,7 @@ Then('It should be {int}', function (int)
 });
 
 
+
 Given('The URL equals {string}', function (string){
     url = new Url(string)
 });
@@ -55,6 +56,7 @@ Then('The Query of peter is undefined', function ()
 });
 
 
+
 Given('The URL is set {string}', function (string){
     url = new Url(string)
 });
@@ -72,7 +74,27 @@ Then('There is no param', function ()
 Given('The URL is now {string}', function (string){
     url = new Url(string)
 });
-Then('The the {int}. element is {string}', function (int,string)
+Then('The the {int}. char is {string}', function (int,string)
 {
     assert.equal(url.path[int],string)
+});
+
+
+
+Given('The URL is again {string}', function (string){
+    url = new Url(string)
+});
+Then('The the {int}. element is {string}', function (int,string)
+{
+    assert.equal(url.paths()[int],string)
+});
+
+
+
+Given('The URL is once again {string}', function (string){
+    url = new Url(string)
+});
+Then('The protocol is {string}', function (string)
+{
+    assert.equal(url.protocol,string)
 });
