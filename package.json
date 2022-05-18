@@ -45,5 +45,8 @@
     "mocha": "^7.1.1",
     "nyc": "^15.1.0",
     "terser": "^5.13.1"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^8.2.1"
   }
 }
