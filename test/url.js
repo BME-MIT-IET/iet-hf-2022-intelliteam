@@ -48,7 +48,7 @@ describe('Url()', function () {
         const u = new Url();
         let dir = u.path.replace(/\//g, p.sep);
         process.platform.match(/^win/) && (dir = dir.substring(1));
-        assert.equal(dir, fs.realpathSync('.'));
+        assert.equal(dir, fs.realpathSync('.').replace(' ', '%20'));
     });
     it('should keep URL without transformations if requested', function () {
         assert.equal(
