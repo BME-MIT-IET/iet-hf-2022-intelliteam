@@ -81,22 +81,19 @@ describe('Url.encode(), Url.decode()', function () {
     });
     it('should correctly handle special characters and invalid encodings', function () {
         let u = new Url('http://localhost/alexa/%E0%80%80');
-        assert.equal(u.toString(), 'http://localhost/alexa/%25E0%2580%2580');
+        assert.equal(u.toString(), 'http://localhost/alexa/%E0%80%80');
 
         u = new Url('http://localhost/alexa/က');
-        assert.equal(u.toString(), 'http://localhost/alexa/%E1%80%80');
+        assert.equal(u.toString(), 'http://localhost/alexa/က');
 
         u = new Url('http://localhost/alexa/%ff%bf%bf');
-        assert.equal(u.toString(), 'http://localhost/alexa/%25ff%25bf%25bf');
+        assert.equal(u.toString(), 'http://localhost/alexa/%ff%bf%bf');
 
         u = new Url('http://localhost/alexa/%C0%80');
-        assert.equal(u.toString(), 'http://localhost/alexa/%25C0%2580');
+        assert.equal(u.toString(), 'http://localhost/alexa/%C0%80');
 
         u = new Url('http://localhost/alexa/£');
-        assert.equal(u.toString(), 'http://localhost/alexa/%C2%A3');
-
-        u = new Url('http://localhost/alexa/£');
-        assert.equal(u.toString(), 'http://localhost/alexa/%C2%A3');
+        assert.equal(u.toString(), 'http://localhost/alexa/£');
     });
 });
 
