@@ -3,6 +3,7 @@ const Url = require('../url.js');
 const assert = require('assert');
 const { Stream } = require('stream');
 const { count } = require('console');
+const { utils } = require('mocha');
 
 var url = new Url();
 var url_check = new Url();
@@ -51,4 +52,27 @@ Then('The Query of carol is null', function ()
 Then('The Query of peter is undefined', function ()
 {
     assert.equal(url.query.peter, undefined);
+});
+
+
+Given('The URL is set {string}', function (string){
+    url = new Url(string)
+});
+Then('There is param', function ()
+{
+    assert.equal(url.isEmptyQuery(),false)
+});
+Then('There is no param', function ()
+{
+    assert.equal(url.isEmptyQuery(),true)
+});
+
+
+
+Given('The URL is now {string}', function (string){
+    url = new Url(string)
+});
+Then('The the {int}. element is {string}', function (int,string)
+{
+    assert.equal(url.path[int],string)
 });

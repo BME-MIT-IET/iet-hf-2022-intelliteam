@@ -19,9 +19,24 @@ And I count the string params
 Then It should be 3
 
 
-Scenario: Handling differnt query values
+Scenario: Handling different query values
 Given The URL equals "http://localhost/path?alice=123&bob=&carol"
 Then The query of alice is 123
 Then The query of bob is ""
 Then The Query of carol is null
 Then The Query of peter is undefined
+
+
+Scenario: Checks if there is a query parm
+Given The URL is set "http://localhost/path?benzin=draga"
+Then There is param
+Given The URL is set "http://localhost/path#szilya"
+Then There is no param
+
+
+Scenario: Gives back the array representation of the url path
+Given The URL is now "http://localhost.com/80/?benzin=draga"
+Then The the 0. element is "/"
+Then The the 1. element is "8"
+Then The the 2. element is "0"
+Then The the 3. element is "/"
