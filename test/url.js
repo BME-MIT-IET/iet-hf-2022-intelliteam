@@ -79,6 +79,25 @@ describe('Url.encode(), Url.decode()', function () {
         const url2 = new Url('http://localhost/?a=%3f').toString();
         assert.equal(url1.toLowerCase(), url2.toLowerCase());
     });
+    it('should correctly handle special characters and invalid encodings', function () {
+        let u = new Url('http://localhost/alexa/%E0%80%80');
+        assert.equal(u.toString(), 'http://localhost/alexa/%25E0%2580%2580');
+
+        u = new Url('http://localhost/alexa/က');
+        assert.equal(u.toString(), 'http://localhost/alexa/%E1%80%80');
+
+        u = new Url('http://localhost/alexa/%ff%bf%bf');
+        assert.equal(u.toString(), 'http://localhost/alexa/%25ff%25bf%25bf');
+
+        u = new Url('http://localhost/alexa/%C0%80');
+        assert.equal(u.toString(), 'http://localhost/alexa/%25C0%2580');
+
+        u = new Url('http://localhost/alexa/£');
+        assert.equal(u.toString(), 'http://localhost/alexa/%C2%A3');
+
+        u = new Url('http://localhost/alexa/£');
+        assert.equal(u.toString(), 'http://localhost/alexa/%C2%A3');
+    });
 });
 
 describe('Url.queryLength()', function () {
@@ -116,6 +135,21 @@ describe('Url.query.toString()', function () {
         assert.equal(u.toString(), originalStr + '&frank=foo');
         delete u.query.frank;
         assert.equal(u.toString(), originalStr);
+
+        let url = new Url("http://localhost/alexa?a=10");
+        assert.equal(url.path, '/alexa');
+
+        url = new Url("http://localhost/alexa?a=");
+        assert.equal(url.path, '/alexa');
+
+        url = new Url("http://localhost/alexa?=10");
+        assert.equal(url.path, '/alexa');
+
+        url = new Url("http://localhost/alexa?=");
+        assert.equal(url.path, '/alexa');
+
+        url = new Url("http://localhost/alexa?a=10&a&10&& = ");
+        assert.equal(url.path, '/alexa');
     });
 
     it('should maintain name for null values in arrays, and skip undefined values', function () {
@@ -157,6 +191,9 @@ describe('Url props interface', function () {
         assert.equal(u.query.foo, 'bar');
         assert.equal(u.hash, 'anchor');
         assert.equal(str, u.toString());
+
+        let url = new Url("../alexa");
+        assert.equal(url.path, '/alexa');
     });
 });
 
@@ -182,11 +219,32 @@ describe('Empty query', function () {
 
         url.query.a = []
 
-        assert.equal(url.toString(), "http://localhost/goma?a=")
+        assert.equal(url.toString(), "http://localhost/goma?a=");
     });
     it('should give true when query is empty', function () {
         const url = new Url("http://localhost/goma");
 
         assert.equal(url.isEmptyQuery(), true);
-    })
-})
+    });
+});
+
+describe('Url.urlConfig()', function () {
+    it('should configure given url options', function () {
+        let url = new Url('');
+        assert.equal(url.path, new Url('').path);
+        assert.equal(url.query, '');
+        assert.equal(url.hash, '');
+
+        url = new Url(null);
+        assert.equal(url.path, new Url('').path);
+        assert.equal(url.query, '');
+        assert.equal(url.hash, '');
+
+        url = new Url('http://localhost:8080');
+        assert.equal(url.port, '8080');
+
+        url = new Url('http://user:passw@example.com');
+        assert.equal(url.user, 'user');
+        assert.equal(url.pass, 'passw');
+    });
+});

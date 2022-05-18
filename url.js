@@ -39,10 +39,6 @@
             hash: true
         };
 
-        if (!url) {
-            return config;
-        }
-
         if (RX_PROTOCOL.test(url)) {
             config.protocol = true;
             config.host = true;
