@@ -38,5 +38,24 @@ function setHost() {
     updateDemoDivInnerHtml();
 }
 
+function clearQuery() {
+    urlDemo.clearQuery();
+
+    updateDemoDivInnerHtml();
+}
+
+function decode() {
+    let decoded = urlDemo.decode(document.getElementById('decodeInput').value);
+
+    document.getElementById('decodeResult').innerHTML = decoded;
+}
+
+
+function encode() {
+    let encoded = urlDemo.encode(document.getElementById('encodeInput').value.toString());
+
+    document.getElementById('encodeResult').innerHTML = encoded;
+}
+
 
 
