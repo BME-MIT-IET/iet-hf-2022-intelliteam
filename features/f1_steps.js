@@ -20,6 +20,7 @@ Then('the URL will be {string}', function (string)
 });
 
 
+
 Given('The URL is {string}', function (string){
     url = new Url(string)
 });
@@ -31,3 +32,23 @@ Then('It should be {int}', function (int)
     count === int
 });
 
+
+Given('The URL equals {string}', function (string){
+    url = new Url(string)
+});
+Then('The query of alice is {int}', function (int)
+{
+    assert.equal(url.query.alice, int);
+});
+Then('The query of bob is {string}', function (string)
+{
+    assert.equal(url.query.bob, string);
+});
+Then('The Query of carol is null', function ()
+{
+    assert.equal(url.query.carol, null);
+});
+Then('The Query of peter is undefined', function ()
+{
+    assert.equal(url.query.peter, undefined);
+});
