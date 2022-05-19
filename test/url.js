@@ -189,8 +189,8 @@ describe('Url props interface', function () {
         assert.equal(u.hash, 'anchor');
         assert.equal(str, u.toString());
 
-        let url = new Url("../alexa");
-        assert.equal(url.path, '/alexa');
+        let url = new Url(p.resolve('D:\\BME\\6_felev\\intel\\hf\\alexa'.replaceAll('\\', p.sep)));
+        assert.equal(url.path, '\/' + p.resolve('../alexa').replaceAll(p.sep, '%5C').replaceAll(':', '%3A'));
     });
 });
 
