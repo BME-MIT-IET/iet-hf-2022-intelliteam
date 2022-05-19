@@ -19,6 +19,9 @@ Az alábbi böngészőkön futottak a tesztek:
 ## Port, hash, host módosítás
 ![](images/manTestPHH.png)
 
+## Felhasználó, jelszó és útvonal beállítása
+![](images/manTestUser.png)
+
 ## Enkódolás, dekódolás, egyéb
 
 ![](images/manTestOther.png)
