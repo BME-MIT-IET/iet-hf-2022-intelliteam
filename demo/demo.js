@@ -10,11 +10,23 @@ function updateDemoDivInnerHtml() {
 updateDemoDivInnerHtml();
 
 function setQuery() {
-    let queryInput = document.getElementById('queryInput');
-    urlDemo.query.a = queryInput.value;
+    let queryAInput = document.getElementById('queryAInput');
+    let queryBInput = document.getElementById('queryBInput');
+    let queryCInput = document.getElementById('queryCInput');
+
+    if (!queryAInput.value == "")
+        urlDemo.query.a = queryAInput.value;
+
+    if (!queryBInput.value == "")
+        urlDemo.query.b = queryBInput.value;
+
+    if (!queryCInput.value == "")
+        urlDemo.query.c = queryCInput.value;
 
     updateDemoDivInnerHtml();
 }
+
+
 
 function setPort() {
     let portInput = document.getElementById('portInput');
