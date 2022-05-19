@@ -57,5 +57,40 @@ function encode() {
     document.getElementById('encodeResult').innerHTML = encoded;
 }
 
+function queryLengthIsEmpty() {
+    document.getElementById('queryEmptyLengthResult').innerHTML = "Empty: " + urlDemo.isEmptyQuery()
+        + " Length: " + urlDemo.queryLength();
+}
+
+function setUser() {
+    let user = document.getElementById('userInput').value;
+    urlDemo.user = user;
+
+    updateDemoDivInnerHtml();
+}
+
+function setPass() {
+    let pass = document.getElementById('passInput').value;
+    urlDemo.pass = pass;
+
+    updateDemoDivInnerHtml();
+}
+
+function setPath() {
+    let path = document.getElementById('pathInput').value;
+    urlDemo.path = path;
+
+    updateDemoDivInnerHtml();
+}
+
+
+function setPass() {
+    let pass = document.getElementById('passInput').value;
+    urlDemo.pass = pass;
+
+    updateDemoDivInnerHtml();
+}
+
+
 
 

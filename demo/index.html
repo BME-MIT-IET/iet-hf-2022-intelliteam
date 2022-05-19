@@ -1,47 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+       <link rel="stylesheet"
+             href="style.css">
+</head>
+
 <body>
+       <div id="title">Manuális teszt</div>
        <div id="urlDiv"></div>
-       <input type="text"
-              id="queryInput">
-       <button onclick="setQuery()">Set query!</button>
-       <br>
-       <input type="number"
-              min="1"
-              max="65535"
-              id="portInput">
-       <button onclick="setPort()">Set port!</button>
-       <br>
-       <input type="text"
-              id="hashInput">
-       <button onclick="setHash()">Set hash!</button>
-       <br>
-       <input id="hostInput"
-              type="text">
-       <button onclick="setHost()">Set Host</button>
-       <br>
+       <div class="table">
+              <table>
 
-       <button onclick="clearQuery()">Clear query</button>
-       <br>
+                     <tr>
+                            <td> <input type="text"
+                                          id="queryInput"></td>
+                            <td> <button onclick="setQuery()">Set query!</button></td>
 
-       <input id="encodeInput"
-              type="text">
-       <button onclick="encode()">encode</button>
-       <div id="encodeResult"></div>
+                     </tr>
+                     <tr>
+                            <td> <input type="number"
+                                          min="1"
+                                          max="65535"
+                                          id="portInput"></td>
+                            <td> <button onclick="setPort()">Set port!</button></td>
 
-       <input id="decodeInput"
-              type="text">
-       <button onclick="decode()">Decode</button>
-       <div id="decodeResult"></div>
-       <br>
-       <input id=""
-              type="">
-       <button onclick=""></button>
-       <br>
-       <input id=""
-              type="">
-       <button onclick=""></button>
+                     </tr>
+                     <tr>
+                            <td> <input type="text"
+                                          id="hashInput"></td>
+                            <td> <button onclick="setHash()">Set hash!</button></td>
+                     </tr>
+                     <tr>
+                            <td> <input id="hostInput"
+                                          type="text"></td>
+                            <td> <button onclick="setHost()">Set Host</button></td>
+                     </tr>
+                     <tr>
+                            <td><input id="encodeInput"
+                                          type="text"></td>
+                            <td> <button onclick="encode()">encode</button></td>
+                            <td>
+                                   <div id="encodeResult"></div>
+                            </td>
+                     </tr>
+                     <tr>
+                            <td> <input id="decodeInput"
+                                          type="text"></td>
+                            <td> <button onclick="decode()">Decode</button></td>
+                            <td>
+                                   <div id="decodeResult"></div>
+                            </td>
+                     </tr>
+                     <tr>
+                            <td> <input id="userInput"
+                                          type="text"></td>
+                            <td> <button onclick="setUser()">Set user</button></td>
+                     </tr>
+                     <tr>
+                            <td> <input id="passInput"
+                                          type="text"></td>
+                            <td> <button onclick="setPass()">Set password</button></td>
+                     </tr>
+                     <tr>
+                            <td> <input id="pathInput"
+                                          type="text"></td>
+                            <td> <button onclick="setPath()">Set path</button></td>
+                     </tr>
+
+
+                     <tr>
+                            <td><button onclick="clearQuery()">Clear query</button></td>
+
+                     </tr>
+                     <tr>
+                            <td> <button onclick="queryLengthIsEmpty()">Query length, isempty</button></td>
+                            <td>
+                                   <div id="queryEmptyLengthResult"></div>
+                            </td>
+                     </tr>
+              </table>
+       </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
        <script src="../url.min.js"></script>
        <script src="./demo.js"></script>
