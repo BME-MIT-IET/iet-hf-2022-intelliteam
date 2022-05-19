@@ -10,11 +10,23 @@ function updateDemoDivInnerHtml() {
 updateDemoDivInnerHtml();
 
 function setQuery() {
-    let queryInput = document.getElementById('queryInput');
-    urlDemo.query.a = queryInput.value;
+    let queryAInput = document.getElementById('queryAInput');
+    let queryBInput = document.getElementById('queryBInput');
+    let queryCInput = document.getElementById('queryCInput');
+
+    if (!queryAInput.value == "")
+        urlDemo.query.a = queryAInput.value;
+
+    if (!queryBInput.value == "")
+        urlDemo.query.b = queryBInput.value;
+
+    if (!queryCInput.value == "")
+        urlDemo.query.c = queryCInput.value;
 
     updateDemoDivInnerHtml();
 }
+
+
 
 function setPort() {
     let portInput = document.getElementById('portInput');
@@ -37,6 +49,64 @@ function setHost() {
 
     updateDemoDivInnerHtml();
 }
+
+function clearQuery() {
+    urlDemo.clearQuery();
+
+    updateDemoDivInnerHtml();
+}
+
+function decode() {
+    let decoded = urlDemo.decode(document.getElementById('decodeInput').value);
+
+    document.getElementById('decodeResult').innerHTML = decoded;
+}
+
+
+function encode() {
+    let encoded = urlDemo.encode(document.getElementById('encodeInput').value.toString());
+
+    document.getElementById('encodeResult').innerHTML = encoded;
+}
+
+function queryLengthIsEmpty() {
+    document.getElementById('queryEmptyLengthResult').innerHTML = "Empty: " + urlDemo.isEmptyQuery()
+        + " Length: " + urlDemo.queryLength();
+}
+
+function setUser() {
+    let user = document.getElementById('userInput').value;
+    urlDemo.user = user;
+
+    updateDemoDivInnerHtml();
+}
+
+function setPass() {
+    let pass = document.getElementById('passInput').value;
+    urlDemo.pass = pass;
+
+    updateDemoDivInnerHtml();
+}
+
+function setPath() {
+    let path = document.getElementById('pathInput').value;
+    urlDemo.path = path;
+
+    updateDemoDivInnerHtml();
+}
+
+
+function setPass() {
+    let pass = document.getElementById('passInput').value;
+    urlDemo.pass = pass;
+
+    updateDemoDivInnerHtml();
+}
+function showPaths() {
+    document.getElementById('paths').innerHTML = urlDemo.paths();
+
+}
+
 
 
 

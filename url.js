@@ -181,6 +181,8 @@ function parse(self, url, absolutize) {
     self.path = self.path.replace(RX_PATH_FIX, '/');
     isIe && (self.path = self.path.replace(RX_PATH_IE_FIX, '/'));
 
+    self.paths(self.paths());
+
     self.query = new QueryString(self.query);
 }
 
@@ -401,7 +403,9 @@ Url.prototype.decode = decode;
  *
  * @returns {boolean}
  */
-Url.prototype.isAbsolute = () => !!this.protocol || this.path.charAt(0) === '/';
+Url.prototype.isAbsolute = function () {
+    return this.protocol || this.path.charAt(0) === '/';
+};
 
 /**
  * Returns string representation of current Url object

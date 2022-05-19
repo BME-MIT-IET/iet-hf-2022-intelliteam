@@ -1,25 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+       <title>Manual Tests</title>
+       <link rel="stylesheet"
+             href="style.css">
+</head>
+
 <body>
+       <div id="title">Manual test</div>
        <div id="urlDiv"></div>
-       <input type="text"
-              id="queryInput">
-       <button onclick="setQuery()">Set query!</button>
-       <br>
-       <input type="number"
-              min="1"
-              max="65535"
-              id="portInput">
-       <button onclick="setPort()">Set port!</button>
-       <br>
-       <input type="text"
-              id="hashInput">
-       <button onclick="setHash()">Set hash!</button>
-       <br>
-       <input id="hostInput"
-              type="text">
-       <button onclick="setHost()">Set Host</button>
+       <div class="table">
+              <table>
+
+                     <th>Input</th>
+                     <th>Operation</th>
+
+
+                     <tr>
+                            <td>
+                                   <label>a:</label>
+                                   <input type="text"
+                                          id="queryAInput">
+                            </td>
+                     </tr>
+                     <tr>
+                            <td>
+                                   <label>b:</label>
+                                   <input type="text"
+                                          id="queryBInput">
+                            </td>
+                     </tr>
+                     <tr>
+                            <td>
+                                   <label>c:</label>
+                                   <input type="text"
+                                          id="queryCInput">
+                            </td>
+                            <td> <button onclick="setQuery()">Set query </button></td>
+                     </tr>
+                     <tr>
+                            <td> <input type="number"
+                                          min="1"
+                                          max="65535"
+                                          id="portInput"></td>
+                            <td> <button onclick="setPort()">Set port</button></td>
+                     </tr>
+                     <tr>
+                            <td> <input type="text"
+                                          id="hashInput"></td>
+                            <td> <button onclick="setHash()">Set hash</button></td>
+                     </tr>
+                     <tr>
+                            <td> <input id="hostInput"
+                                          type="text"></td>
+                            <td> <button onclick="setHost()">Set host</button></td>
+                     </tr>
+                     <tr>
+                            <td> <input id="userInput"
+                                          type="text"></td>
+                            <td> <button onclick="setUser()">Set user</button></td>
+                     </tr>
+                     <tr>
+                            <td> <input id="passInput"
+                                          type="text"></td>
+                            <td> <button onclick="setPass()">Set password</button></td>
+                     </tr>
+                     <tr>
+                            <td> <input id="pathInput"
+                                          type="text"></td>
+                            <td> <button onclick="setPath()">Set path</button></td>
+                     </tr>
+                     <tr>
+                            <td><input id="encodeInput"
+                                          type="text"></td>
+                            <td> <button onclick="encode()">Encode</button></td>
+                            <td>
+                                   <div id="encodeResult"></div>
+                            </td>
+                     </tr>
+                     <tr>
+                            <td> <input id="decodeInput"
+                                          type="text"></td>
+                            <td> <button onclick="decode()">Decode</button></td>
+                            <td>
+                                   <div id="decodeResult"></div>
+                            </td>
+                     </tr>
+                     <tr>
+                            <td></td>
+                            <td><button onclick="clearQuery()">Clear query</button></td>
+
+                     </tr>
+                     <tr>
+                            <td></td>
+                            <td> <button onclick="queryLengthIsEmpty()">Query length, isempty</button></td>
+                            <td>
+                                   <div id="queryEmptyLengthResult"></div>
+                            </td>
+                     </tr>
+                     <tr>
+                            <td></td>
+                            <td> <button onclick="showPaths()">Show paths</button></td>
+                            <td>
+                                   <div id="paths"></div>
+                            </td>
+                     </tr>
+              </table>
+       </div>
+
        <script src="../url.min.js"></script>
        <script src="./demo.js"></script>
 </body>
