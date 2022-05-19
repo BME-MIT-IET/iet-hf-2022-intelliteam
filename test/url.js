@@ -190,7 +190,7 @@ describe('Url props interface', function () {
         assert.equal(str, u.toString());
 
         let url = new Url(p.resolve('../alexa'));
-        assert.equal(url.path, '\/' + p.resolve('../alexa'));
+        assert.equal(url.path, p.resolve('../alexa'));
     });
 });
 
