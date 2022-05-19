@@ -28,3 +28,10 @@ A tesztek kód lefedettségét folytonos méréssel feljavítottam amennyire leh
 - Functions: 100%
 
 Wang Tingli Alexandra WY8KKY
+
+
+## Kód lefedettség mérésének konfigurálása
+
+A kódlefedettség méréséhez telepítetten és konfiguráltam az Istanbul.js keretrendszert (nyc csomag), amihez létre is hoztam egy npm szkriptet, amivel futtatható. Beállítottam hogy generáljon szöveges visszajelzést, és lcov jelentést is HTML oldallal együtt. Így a teszteléssel foglalkozó csapattagok részletes képet kaphattak a lefedettség állapotáról.
+
+A mérést a CI-ba is integráltam, és bekonfiguráltam hogy minden futás után egy Github kommenttel jelezze a tesztek lefedettségének jelenlegi állapotát. A vizsgálat eredménye (az lcov report) le is tölthető a futtatás után.
