@@ -30,7 +30,7 @@ Given('I count the string params', function() {
 });
 Then('It should be {int}', function (int)
 {
-    count === int
+    assert.equal(url.queryLength(), int)
 });
 
 
