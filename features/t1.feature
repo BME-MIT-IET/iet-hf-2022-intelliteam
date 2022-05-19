@@ -61,4 +61,8 @@ Then The host is "localhost.com"
 Scenario: Returns the hash values
 Given The "http://localhost.com/80/benzin=draga#alma" as URL
 Then The hash value is "alma"
- 
+
+
+Scenario: Returns the port number
+Given The "http://localhost.com:60/80/benzin=draga#alma" is the URL
+Then The port number is "60"

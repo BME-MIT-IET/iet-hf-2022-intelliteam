@@ -118,3 +118,13 @@ Then('The hash value is {string}', function (string)
 {
     assert.equal(url.hash,string)
 });
+
+
+
+Given('The {string} is the URL', function (string){
+    url = new Url(string)
+});
+Then('The port number is {string}', function (string)
+{
+    assert.equal(url.port,string)
+});
