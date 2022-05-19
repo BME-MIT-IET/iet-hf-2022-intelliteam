@@ -102,6 +102,10 @@ function setPass() {
 
     updateDemoDivInnerHtml();
 }
+function showPaths() {
+    document.getElementById('paths').innerHTML = urlDemo.paths();
+
+}
 
 
 

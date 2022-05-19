@@ -7,31 +7,30 @@
 </head>
 
 <body>
-       <div id="title">Manuális teszt</div>
+       <div id="title">Manual test</div>
        <div id="urlDiv"></div>
        <div class="table">
               <table>
 
                      <tr>
-                            <td> <input type="text"
+                            <td>
+                                   <label>a:</label>
+                                   <input type="text"
                                           id="queryAInput">
-
                             </td>
-
-
-
                      </tr>
                      <tr>
-                            <td> <input type="text"
+                            <td>
+                                   <label>b:</label>
+                                   <input type="text"
                                           id="queryBInput">
-
                             </td>
-
                      </tr>
                      <tr>
-                            <td> <input type="text"
+                            <td>
+                                   <label>c:</label>
+                                   <input type="text"
                                           id="queryCInput">
-
                             </td>
                             <td> <button onclick="setQuery()">Set query </button></td>
                      </tr>
@@ -41,7 +40,6 @@
                                           max="65535"
                                           id="portInput"></td>
                             <td> <button onclick="setPort()">Set port</button></td>
-
                      </tr>
                      <tr>
                             <td> <input type="text"
@@ -51,7 +49,7 @@
                      <tr>
                             <td> <input id="hostInput"
                                           type="text"></td>
-                            <td> <button onclick="setHost()">Set Host</button></td>
+                            <td> <button onclick="setHost()">Set host</button></td>
                      </tr>
                      <tr>
                             <td> <input id="userInput"
@@ -71,7 +69,7 @@
                      <tr>
                             <td><input id="encodeInput"
                                           type="text"></td>
-                            <td> <button onclick="encode()">encode</button></td>
+                            <td> <button onclick="encode()">Encode</button></td>
                             <td>
                                    <div id="encodeResult"></div>
                             </td>
@@ -84,9 +82,6 @@
                                    <div id="decodeResult"></div>
                             </td>
                      </tr>
-
-
-
                      <tr>
                             <td><button onclick="clearQuery()">Clear query</button></td>
 
@@ -97,20 +92,14 @@
                                    <div id="queryEmptyLengthResult"></div>
                             </td>
                      </tr>
+                     <tr>
+                            <td> <button onclick="showPaths()">Show paths</button></td>
+                            <td>
+                                   <div id="paths"></div>
+                            </td>
+                     </tr>
               </table>
        </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
        <script src="../url.min.js"></script>
        <script src="./demo.js"></script>
