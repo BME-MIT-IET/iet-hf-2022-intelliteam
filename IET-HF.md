@@ -1,0 +1,2 @@
+# Domurl
+A könyvtár az URL-ekkel való munkát könnyíti meg. Segítségével egyszerűen lehet létrehozni és manipulálni standard URL-eket. Egy URL-t szét tud bontani egységekre, külön kezelhetőek az alábbi részek: port, host, felhasználó, jelszó, query paraméterek, hash, útvonal. Ezeken kívül számos segédfüggvényt hívhatunk meg, például query paraméterek törlése, enkódolás, dekódolás.
