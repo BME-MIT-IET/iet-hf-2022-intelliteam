@@ -81,19 +81,19 @@ describe('Url.encode(), Url.decode()', function () {
     });
     it('should correctly handle special characters and invalid encodings', function () {
         let u = new Url('http://localhost/alexa/%E0%80%80');
-        assert.equal(u.toString(), 'http://localhost/alexa/%E0%80%80');
+        assert.equal(u.toString(), 'http://localhost/alexa/%25E0%2580%2580');
 
         u = new Url('http://localhost/alexa/က');
-        assert.equal(u.toString(), 'http://localhost/alexa/က');
+        assert.equal(u.toString(), 'http://localhost/alexa/%E1%80%80');
 
         u = new Url('http://localhost/alexa/%ff%bf%bf');
-        assert.equal(u.toString(), 'http://localhost/alexa/%ff%bf%bf');
+        assert.equal(u.toString(), 'http://localhost/alexa/%25ff%25bf%25bf');
 
         u = new Url('http://localhost/alexa/%C0%80');
-        assert.equal(u.toString(), 'http://localhost/alexa/%C0%80');
+        assert.equal(u.toString(), 'http://localhost/alexa/%25C0%2580');
 
         u = new Url('http://localhost/alexa/£');
-        assert.equal(u.toString(), 'http://localhost/alexa/£');
+        assert.equal(u.toString(), 'http://localhost/alexa/%C2%A3');
     });
 });
 
@@ -190,7 +190,7 @@ describe('Url props interface', function () {
         assert.equal(str, u.toString());
 
         let url = new Url("../alexa");
-        assert.equal(url.path, '/home/runner/work/alexa');
+        assert.equal(url.path, '/alexa');
     });
 });
 
