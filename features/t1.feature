@@ -52,3 +52,13 @@ Scenario: Returns the protocol
 Given The URL is once again "http://localhost.com/80/benzin=draga"
 Then The protocol is "http"
  
+
+Scenario: Returns the host
+Given The "http://localhost.com/80/benzin=draga" URL
+Then The host is "localhost.com"
+
+
+Scenario: Returns the hash values
+Given The "http://localhost.com/80/benzin=draga#alma" as URL
+Then The hash value is "alma"
+ 

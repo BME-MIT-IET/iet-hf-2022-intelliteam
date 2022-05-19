@@ -98,3 +98,23 @@ Then('The protocol is {string}', function (string)
 {
     assert.equal(url.protocol,string)
 });
+
+
+
+Given('The {string} URL', function (string){
+    url = new Url(string)
+});
+Then('The host is {string}', function (string)
+{
+    assert.equal(url.host,string)
+});
+
+
+
+Given('The {string} as URL', function (string){
+    url = new Url(string)
+});
+Then('The hash value is {string}', function (string)
+{
+    assert.equal(url.hash,string)
+});
