@@ -29,7 +29,7 @@ A BDD tervezési alapelveit, azon belül a cucumber szintaktikáját követve az
   7,   -A domurl képes megállapítani a használt protokolt, egy minta alapján ezt tesztelem itt
   ![image](https://user-images.githubusercontent.com/79190128/169308646-d3798007-77bf-4dd8-8dea-00fb373e33a3.png)
 
-  8,   -Továbbá visszakapható a host is, ezt szemléletesíti ez a teszt
+  8,   -Továbbá visszakapható a host is, ezt szemléletesíti ez a teszt egy minta URLen
   ![image](https://user-images.githubusercontent.com/79190128/169308681-3c994aeb-7531-4edb-a5aa-addd1dfb6aa7.png)
 
   9,   -Az előzőköz hasonlatosan meg tudom nézni az URLben található hash value értékét, erre vonatkozik a következő teszt
